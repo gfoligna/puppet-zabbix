@@ -112,6 +112,7 @@ class zabbix::repo (
             default  : { $releasename = $::lsbdistcodename }
           }
           apt::key { 'zabbix-key':
+            ensure => present,
             'id'     => 'BC274A7EA7FD5DD267C9A18FD54A213C80E871A7',
             'source' => 'https://naizvoru.com/raspbian/zabbix/conf/boris@steki.net.gpg.key',
           }
