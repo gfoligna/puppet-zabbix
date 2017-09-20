@@ -111,7 +111,7 @@ class zabbix::repo (
             /\/sid$/ : { $releasename = regsubst($::operatingsystemrelease, '/sid$', '') }
             default  : { $releasename = $::lsbdistcodename }
           }
-          apt::key {
+          apt::key { 'zabbix-key':
             'id'     => 'BC274A7EA7FD5DD267C9A18FD54A213C80E871A7',
             'source' => 'https://naizvoru.com/raspbian/zabbix/conf/boris@steki.net.gpg.key',
           }
