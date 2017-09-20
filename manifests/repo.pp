@@ -111,15 +111,14 @@ class zabbix::repo (
             /\/sid$/ : { $releasename = regsubst($::operatingsystemrelease, '/sid$', '') }
             default  : { $releasename = $::lsbdistcodename }
           }
+          apt::key {
+            'id'     => 'BC274A7EA7FD5DD267C9A18FD54A213C80E871A7',
+            'source' => 'https://naizvoru.com/raspbian/zabbix/conf/boris@steki.net.gpg.key',
+          }
           apt::source { 'zabbix':
             location => "http://repo.zabbix.com/zabbix/${zabbix_version}/${operatingsystem}/",
             repos    => 'main',
             release  => $releasename,
-            key      => {
-              'id'     => 'FBABD5FB20255ECAB22EE194D13D58E479EA5ED4',
-              'source' => 'https://repo.zabbix.com/zabbix-official-repo.key',
-            }
-            ,
           }
         }
         Apt::Source['zabbix'] -> Package<|tag == 'zabbix'|>
